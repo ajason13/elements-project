@@ -1,4 +1,4 @@
-package com.sqa.jf.helpers;
+package com.sqa.ja.helpers;
 
 import java.io.*;
 import java.sql.*;
@@ -9,8 +9,8 @@ import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
 
-import com.sqa.jf.helpers.enums.*;
-import com.sqa.jf.helpers.exceptions.*;
+import com.sqa.ja.enums.*;
+import com.sqa.ja.helpers.exceptions.*;
 
 /**
  * DataHelper Class to handle reading data from different sources.
