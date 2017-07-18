@@ -29,7 +29,7 @@ public abstract class AbstractLoginTest extends BasicTest {
 		super(baseUrl);
 	}
 
-	abstract public void login(String username, String password);
+	abstract public void login();
 
 	abstract public void logout();
 }

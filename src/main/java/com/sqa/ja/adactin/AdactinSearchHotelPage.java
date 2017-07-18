@@ -13,7 +13,6 @@ import java.util.*;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.*;
-import org.openqa.selenium.support.ui.*;
 
 import com.sqa.ja.auto.*;
 
@@ -69,17 +68,40 @@ public class AdactinSearchHotelPage extends BasicPage {
 		return temp;
 	}
 
+	public void checkForDateErrorMsg() {
+		// TODO code in checking for Checkin/Checkout error msg cuz don't want
+		// getDriver()...... in test cases
+	}
+
 	public void clickOnSearchButton() {
 		this.submitButton.click();
 	}
 
-	public void fillSearchHotelForm() {
-		new Select(this.locationField).selectByVisibleText("Sydney");
-		new Select(this.hotelField).selectByVisibleText("Hotel Creek");
-		new Select(this.roomTypeField).selectByVisibleText("Standard");
-		new Select(this.numOfRoomsField).selectByVisibleText("1 - One");
+	public void fillSearchHotelForm(String location, String hotel, String roomType, String roomNums, int checkinDay,
+			int checkoutDay) {
+		selectDropDown(this.locationField, location);
+		selectDropDown(this.hotelField, hotel);
+		selectDropDown(this.roomTypeField, roomType);
+		selectDropDown(this.numOfRoomsField, roomNums);
 		this.input = new Date();
 		this.date = this.input.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		String tempCheckIn = addDaysToCurrentDate(checkinDay);
+		String tempCheckOut = addDaysToCurrentDate(checkoutDay);
+		setDate(tempCheckIn, tempCheckOut);
+	}
+
+	/**
+	 * @return the checkinDateField
+	 */
+	public WebElement getCheckinDateField() {
+		return this.checkinDateField;
+	}
+
+	/**
+	 * @return the checkoutDateField
+	 */
+	public WebElement getCheckoutDateField() {
+		return this.checkoutDateField;
 	}
 
 	/**
@@ -89,12 +111,60 @@ public class AdactinSearchHotelPage extends BasicPage {
 		return this.date;
 	}
 
-	public SearchHotelsResultsPage searchForHotels(String... data) {
-		fillSearchHotelForm();
-		clickOnSearchButton();
-		return new SearchHotelsResultsPage(this.getRelTest());
+	/**
+	 * @return the formatter
+	 */
+	public DateTimeFormatter getFormatter() {
+		return this.formatter;
 	}
 
+	/**
+	 * @return the hotelField
+	 */
+	public WebElement getHotelField() {
+		return this.hotelField;
+	}
+
+	/**
+	 * @return the input
+	 */
+	public Date getInput() {
+		return this.input;
+	}
+
+	/**
+	 * @return the locationField
+	 */
+	public WebElement getLocationField() {
+		return this.locationField;
+	}
+
+	/**
+	 * @return the numOfRoomsField
+	 */
+	public WebElement getNumOfRoomsField() {
+		return this.numOfRoomsField;
+	}
+
+	/**
+	 * @return the roomTypeField
+	 */
+	public WebElement getRoomTypeField() {
+		return this.roomTypeField;
+	}
+
+	/**
+	 * @return the submitButton
+	 */
+	public WebElement getSubmitButton() {
+		return this.submitButton;
+	}
+
+	// public SearchHotelsResultsPage searchForHotels(String... data) {
+	// fillSearchHotelForm();
+	// clickOnSearchButton();
+	// return new SearchHotelsResultsPage(this.getRelTest());
+	// }
 	public void setDate(String checkinDate, String checkoutDate) {
 		this.checkinDateField.clear();
 		this.checkinDateField.sendKeys(checkinDate);

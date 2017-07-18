@@ -7,6 +7,9 @@
  */
 package com.sqa.ja.adactin;
 
+import static org.testng.Assert.*;
+
+import org.openqa.selenium.*;
 import org.testng.annotations.*;
 
 import com.sqa.ja.auto.*;
@@ -31,10 +34,13 @@ public class AdactinTC101B extends BasicTest {
 
 	@Test
 	public void loginTest() {
-		System.out.println("Adactin Test Login (TC-101B)");
+		String expectedLoginMsg = "Hello d0ntkn0w321!";
+		System.out.println("Adactin Login Test Case (TC-101B)");
 		AdactinHomePage homePage = new AdactinHomePage(this);
 		this.takeScreenshot();
 		homePage.login("d0ntkn0w321", "qwertbrz");
 		this.takeScreenshot();
+		String actualLoginMsg = getDriver().findElement(By.id("username_show")).getText();
+		assertEquals(actualLoginMsg, expectedLoginMsg);
 	}
 }

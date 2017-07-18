@@ -12,7 +12,6 @@ import java.time.format.*;
 import java.util.*;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.*;
 import org.testng.annotations.*;
 
 import com.sqa.ja.helpers.*;
@@ -50,7 +49,7 @@ public class AdactinTest extends AbstractLoginTest {
 
 	@BeforeClass
 	public void adactinLogin() {
-		login("d0ntkn0w321", "qwertbrz");
+		login();
 		this.input = new Date();
 		this.date = this.input.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 	}
@@ -63,24 +62,6 @@ public class AdactinTest extends AbstractLoginTest {
 	public String addDaysToCurrentDate(int days) {
 		String temp = this.date.plusDays(days).format(this.formatter);
 		return temp;
-	}
-
-	// EDIT LATER FOR XPATH OR CSS
-	public Select createSelect(String id) {
-		return new Select(createWebElement(id));
-	}
-
-	// EDIT LATER FOR XPATH OR CSS
-	// Pass id, xpath, or css
-	public WebElement createWebElement(String... elementArray) {
-		for (String element : elementArray)
-			if (this.isPresent(By.id(element))) {
-				return getDriver().findElement(By.id(element));
-			} else {
-				return getDriver().findElement(By.xpath(element));
-			}
-		// GET SOME CODE TO HOW TO CHECK FOR CORRECT CSS SELECTOR
-		return null;
 	}
 
 	/**
@@ -122,15 +103,15 @@ public class AdactinTest extends AbstractLoginTest {
 	 * @see com.sqa.ja.helpers.AbstractLoginTest#login()
 	 */
 	@Override
-	public void login(String username, String password) {
+	public void login() {
 		this.takeScreenshot("Pre-login");
 		WebElement usernameField = getDriver().findElement(By.id("username"));
 		WebElement passwordField = getDriver().findElement(By.id("password"));
 		WebElement loginButton = getDriver().findElement(By.id("login"));
 		usernameField.clear();
-		usernameField.sendKeys(username);
+		usernameField.sendKeys(getProp("username"));
 		passwordField.clear();
-		passwordField.sendKeys(password);
+		passwordField.sendKeys(getProp("password"));
 		loginButton.click();
 		this.takeScreenshot("Post-login");
 	}
