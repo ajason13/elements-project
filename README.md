@@ -1,7 +1,6 @@
-# Basic Project
-## Basic Project Structure
+# Elements Project
 
-*Default Structure for A Basic Project*
+*Warm up to find specific elements in websites and using the PageObject approach*
 
 **Java 8**
 
