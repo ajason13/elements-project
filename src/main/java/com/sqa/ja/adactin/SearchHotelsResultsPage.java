@@ -49,6 +49,15 @@ public class SearchHotelsResultsPage extends BasicPage {
 	@FindBy(id = "continue")
 	private WebElement continueButton;
 
+	@FindBy(id = "price_night_0")
+	private WebElement pricePerNight;
+
+	@FindBy(id = "hotel_name_0")
+	private WebElement hotelName;
+
+	@FindBy(id = "no_days_0")
+	private WebElement numOfDays;
+
 	/**
 	 * @param test
 	 */
@@ -86,10 +95,31 @@ public class SearchHotelsResultsPage extends BasicPage {
 	}
 
 	/**
+	 * @return the hotelName
+	 */
+	public WebElement getHotelName() {
+		return this.hotelName;
+	}
+
+	/**
 	 * @return the location0
 	 */
 	public WebElement getLocation() {
 		return this.location;
+	}
+
+	/**
+	 * @return the numOfDays
+	 */
+	public WebElement getNumOfDays() {
+		return this.numOfDays;
+	}
+
+	/**
+	 * @return the pricePerNight
+	 */
+	public WebElement getPricePerNight() {
+		return this.pricePerNight;
 	}
 
 	/**
